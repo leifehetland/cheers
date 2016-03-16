@@ -38,14 +38,22 @@ namespace Cheers
             var myBdayArray = userInput.Split('/');
             int m = int.Parse(myBdayArray[0]);
             int d = int.Parse(myBdayArray[1]);
-            DateTime myBday = new DateTime(2016, m, d);
+            DateTime myBday = new DateTime(todayIs.Year, m, d);
+
             Console.WriteLine(myBday);
             if (todayIs == myBday)
             {
                 Console.WriteLine("Happy Birthday!");
             }
-            else 
+            else if (myBday > todayIs)
             {
+                TimeSpan difference = myBday - todayIs;
+                Console.WriteLine("Your birthday is " + difference.Days + " days away!");
+
+            }
+            else if (myBday < todayIs)
+            {
+                 myBday = new DateTime(todayIs.Year + 1, m, d);
                 TimeSpan difference = myBday - todayIs;
                 Console.WriteLine("Your birthday is " + difference.Days + " days away!");
             }
